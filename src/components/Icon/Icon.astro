@@ -1,0 +1,12 @@
+---
+import './Icon.css'
+
+export interface Props {
+  faIcon: string
+  handlingClass?: string
+}
+
+const { faIcon, handlingClass } = Astro.props
+---
+
+<i class:list={['icon', faIcon, handlingClass]}></i>

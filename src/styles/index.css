@@ -1,0 +1,5 @@
+@layer reset, palette, style;
+
+@import 'reset.css' layer(reset);
+@import 'palette.css' layer(palette);
+@import 'style.css' layer(style);

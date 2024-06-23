@@ -1,0 +1,142 @@
+nav {
+  display: flex;
+  gap: var(--pal-size-not-font-l);
+  font-size: var(--pal-size-font-s);
+
+  color: var(--pal-color-gs-300);
+
+  a {
+    text-decoration: none;
+  }
+
+  > a {
+    display: flex;
+    align-items: center;
+    gap: var(--pal-size-not-font-xs);
+
+    transition: color var(--pal-time-xs) ease-out;
+
+    &:hover {
+      color: var(--pal-color-white);
+    }
+
+    small {
+      --padding-block: var(--pal-size-not-font-2xs);
+
+      font-size: var(--pal-size-font-xs);
+      padding-inline: calc(var(--padding-block) * 2.5);
+      padding-block: var(--padding-block);
+      border-radius: var(--pal-size-not-font-l);
+
+      background-color: rgba(var(--pal-color-base-white), 0.125);
+    }
+  }
+
+  #menu {
+    position: relative;
+
+    &[data-open='true'] {
+      button .icon {
+        rotate: 0.5turn;
+      }
+
+      ul {
+        translate: initial;
+        opacity: 1;
+        pointer-events: initial;
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: var(--pal-size-not-font-xs);
+
+      transition: color var(--pal-time-xs) ease-out;
+
+      &:hover {
+        color: var(--pal-color-gs-100);
+      }
+
+      h2 {
+        font-size: var(--pal-size-font-s);
+
+        font-weight: 500;
+        color: rgba(var(--accent-color), 1);
+      }
+
+      .icon {
+        --cmp-icon-size: var(--pal-size-not-font-s);
+
+        transition: rotate var(--pal-time-s) ease-out;
+      }
+    }
+
+    ul {
+      --gap: var(--pal-size-not-font-m);
+
+      position: absolute;
+      top: calc(100% + var(--gap));
+      left: calc(var(--gap) * -1);
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--pal-size-not-font-xs);
+
+      translate: 0 var(--pal-size-not-font-xs);
+      color: var(--pal-color-gs-100);
+      background-color: var(--pal-color-black);
+      box-shadow: var(--pal-shadow-1);
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+
+      transition: translate var(--pal-time-m) var(--pal-timing-func-a),
+        opacity var(--pal-time-m) var(--pal-timing-func-a);
+
+      li a {
+        position: relative;
+        padding: var(--gap);
+        padding-right: calc(var(--gap) * 5);
+        width: 100%;
+
+        text-wrap: nowrap;
+        font-weight: normal;
+        background-color: rgba(var(--accent-color), 0.5);
+        overflow: hidden;
+
+        transition: color var(--pal-time-xs) ease-out,
+          background-color var(--pal-time-s) ease-out;
+
+        &:hover {
+          color: var(--pal-color-white);
+          background-color: rgba(var(--accent-color), 0.75);
+
+          img {
+            scale: 1.125;
+
+            mask-position: 100%;
+          }
+        }
+
+        img {
+          position: absolute;
+          top: 0;
+          left: calc(100% - var(--gap) * 2);
+          width: auto;
+          height: 100%;
+
+          mask-size: 200% 200%;
+          mask-image: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0) 5%,
+            rgba(0, 0, 0, 1) 50%
+          );
+
+          transition: scale var(--pal-time-m) ease-out,
+            mask-position var(--pal-time-s) ease-out;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+---
+import '@fontsource-variable/inter'
+import '@/styles/index.css'
+
+import './Page.css'
+import { ViewTransitions } from 'astro:transitions'
+import Background from './components/Background/Background.astro'
+import Nav from './components/Nav/Nav.astro'
+import jsonData from '@/data.json'
+
+interface Props {
+  subtitle?: string
+}
+
+const { subtitle } = Astro.props
+
+const { title } = jsonData.documentInfo
+const { base, separator } = title
+
+let fullTitle = base
+
+if (subtitle) fullTitle += ` ${separator} ${subtitle}`
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href="https://story-lit-lab.vercel.app/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#eb5547" />
+
+    <title>{fullTitle}</title>
+
+    <ViewTransitions />
+  </head>
+  <body>
+    <Background />
+    <header>
+      <Nav />
+    </header>
+    <main>
+      <slot />
+    </main>
+
+    <script
+      data-astro-rerun
+      is:inline
+      src="https://kit.fontawesome.com/7463805de7.js"></script>
+  </body>
+</html>

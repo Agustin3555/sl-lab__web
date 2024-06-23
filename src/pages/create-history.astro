@@ -1,0 +1,8 @@
+---
+import Page from '@/layouts/Page/Page.astro'
+import jsonData from '@/data.json'
+
+const { title } = jsonData.pages.createHistory
+---
+
+<Page subtitle={title} />

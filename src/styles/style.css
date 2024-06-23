@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+
+  color: inherit;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --glb-line-width: var(--pal-size-not-font-6xs);
+}
+
+html {
+  text-rendering: optimizeLegibility;
+  background-color: var(--pal-color-gs-900);
+  min-height: 100vh;
+  height: 100vh;
+  /* TODO: pensar en como corregir esto con el body */
+}
+
+body {
+  position: relative;
+  font-size: var(--pal-size-font-xs);
+
+  font-family: var(--pal-font-a);
+  color: var(--pal-color-gs-100);
+}
+
+::selection {
+  background-color: var(--pal-color-d);
+  color: var(--pal-color-white);
+}
+
+:is(h1, h2, h3, h4),
+:is(h1, h2, h3, h4) > * {
+  margin: 0;
+  letter-spacing: initial;
+  word-spacing: initial;
+}
+
+address {
+  font-style: initial;
+}
+
+ul,
+ol {
+  list-style: none;
+
+  li {
+    display: flex;
+  }
+}
+
+hr {
+  border: none;
+}
+
+span {
+  display: block;
+}
+
+input {
+  outline: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:disabled {
+    box-shadow: initial !important;
+    cursor: default;
+  }
+
+  &:active {
+    box-shadow: initial !important;
+  }
+}
+
+.text {
+  line-height: 1.25;
+  text-wrap: pretty;
+
+  strong {
+    font-weight: 700;
+    color: var(--pal-color-b-d2);
+
+    transition: color var(--pal-time-s) ease-out;
+  }
+}
+
+.paragraphs {
+  > * {
+    margin-bottom: 1em;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.scrollable {
+  --angle: 180deg;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(122, 122, 122, 0.25) transparent;
+
+  animation: progress-scrolling auto linear;
+  animation-timeline: scroll(self);
+}
+
+.scrollable--inline {
+  --angle: 90deg;
+
+  animation-timeline: scroll(self inline);
+}
+
+@keyframes progress-scrolling {
+  from {
+    mask-image: linear-gradient(
+      var(--angle),
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) var(--gradient-width),
+      rgba(0, 0, 0, 1) calc(100% - var(--gradient-width)),
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  0.001%,
+  99.999% {
+    mask-image: linear-gradient(
+      var(--angle),
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) var(--gradient-width),
+      rgba(0, 0, 0, 1) calc(100% - var(--gradient-width)),
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  to {
+    mask-image: linear-gradient(
+      var(--angle),
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) var(--gradient-width),
+      rgba(0, 0, 0, 1) calc(100% - var(--gradient-width)),
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "documentInfo": {
+    "title": {
+      "base": "StoryLit Lab",
+      "separator": "•"
+    }
+  },
+  "NOT_FOUND": {
+    "title": "404"
+  },
+  "pages": {
+    "game": {
+      "page": "game",
+      "title": "Juego",
+      "color": "a",
+      "content": {}
+    },
+    "phraseElementBonding": {
+      "page": "phrase-element-bonding",
+      "title": "Unión frase-elemento",
+      "tags": ["IA"],
+      "color": "b",
+      "content": {}
+    },
+    "createHistory": {
+      "page": "create-history",
+      "title": "Crear historia",
+      "tags": ["IA"],
+      "color": "c",
+      "content": {}
+    }
+  }
+}

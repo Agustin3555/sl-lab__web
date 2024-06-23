@@ -1,0 +1,151 @@
+:root {
+  --pal-font-a: 'Inter Variable', Arial, Helvetica, sans-serif;
+
+  --pal-size-font-xs: 0.8125rem;
+  --pal-size-font-s: 1rem;
+  --pal-size-font-m: 1.25rem;
+  --pal-size-font-l: 1.5rem;
+  --pal-size-font-xl: 1.875rem;
+  --pal-size-font-2xl: 2.8125rem;
+
+  --pal-size-not-font-3xs: 0.125rem;
+  --pal-size-not-font-2xs: 0.25rem;
+  --pal-size-not-font-xs: 0.5rem;
+  --pal-size-not-font-s: 0.75rem;
+  --pal-size-not-font-m: 1rem;
+  --pal-size-not-font-l: 1.5rem;
+  --pal-size-not-font-xl: 2rem;
+  --pal-size-not-font-2xl: 2.5rem;
+  --pal-size-not-font-3xl: 5rem;
+
+  --pal-color-base-a-d2: 0, 0, 0;
+  --pal-color-base-a-d1: 71, 92, 133;
+  --pal-color-base-a: 102, 136, 204;
+  --pal-color-base-a-l1: 0, 0, 0;
+  --pal-color-base-a-l2: 0, 0, 0;
+
+  --pal-color-base-b-d2: 0, 0, 0;
+  --pal-color-base-b-d1: 133, 102, 71;
+  --pal-color-base-b: 204, 153, 102;
+  --pal-color-base-b-l1: 0, 0, 0;
+  --pal-color-base-b-l2: 0, 0, 0;
+
+  --pal-color-base-c-d2: 0, 0, 0;
+  --pal-color-base-c-d1: 82, 71, 133;
+  --pal-color-base-c: 119, 102, 204;
+  --pal-color-base-c-l1: 0, 0, 0;
+  --pal-color-base-c-l2: 0, 0, 0;
+
+  --pal-color-base-d-d2: 0, 0, 0;
+  --pal-color-base-d-d1: 0, 0, 0;
+  --pal-color-base-d: 0, 0, 0;
+  --pal-color-base-d-l1: 0, 0, 0;
+  --pal-color-base-d-l2: 0, 0, 0;
+
+  --pal-color-base-black: 0, 0, 0;
+  --pal-color-base-gs-950: 13, 13, 13;
+  --pal-color-base-gs-900: 26, 26, 26;
+  --pal-color-base-gs-850: 38, 38, 38;
+  --pal-color-base-gs-800: 51, 51, 51;
+  --pal-color-base-gs-750: 64, 64, 64;
+  --pal-color-base-gs-700: 77, 77, 77;
+  --pal-color-base-gs-650: 89, 89, 89;
+  --pal-color-base-gs-600: 102, 102, 102;
+  --pal-color-base-gs-550: 115, 115, 115;
+  --pal-color-base-gs-500: 128, 128, 128;
+  --pal-color-base-gs-450: 140, 140, 140;
+  --pal-color-base-gs-400: 153, 153, 153;
+  --pal-color-base-gs-350: 166, 166, 166;
+  --pal-color-base-gs-300: 179, 179, 179;
+  --pal-color-base-gs-250: 191, 191, 191;
+  --pal-color-base-gs-200: 204, 204, 204;
+  --pal-color-base-gs-150: 217, 217, 217;
+  --pal-color-base-gs-100: 230, 230, 230;
+  --pal-color-base-gs-50: 242, 242, 242;
+  --pal-color-base-white: 255, 255, 255;
+
+  --pal-color-a-d2: rgb(var(--pal-color-base-a-d2));
+  --pal-color-a-d1: rgb(var(--pal-color-base-a-d1));
+  --pal-color-a: rgb(var(--pal-color-base-a));
+  --pal-color-a-l1: rgb(var(--pal-color-base-a-l1));
+  --pal-color-a-l2: rgb(var(--pal-color-base-a-l2));
+
+  --pal-color-b-d2: rgb(var(--pal-color-base-b-d2));
+  --pal-color-b-d1: rgb(var(--pal-color-base-b-d1));
+  --pal-color-b: rgb(var(--pal-color-base-b));
+  --pal-color-b-l1: rgb(var(--pal-color-base-b-l1));
+  --pal-color-b-l2: rgb(var(--pal-color-base-b-l2));
+
+  --pal-color-c-d2: rgb(var(--pal-color-base-c-d2));
+  --pal-color-c-d1: rgb(var(--pal-color-base-c-d1));
+  --pal-color-c: rgb(var(--pal-color-base-c));
+  --pal-color-c-l1: rgb(var(--pal-color-base-c-l1));
+  --pal-color-c-l2: rgb(var(--pal-color-base-c-l2));
+
+  --pal-color-d-d2: rgb(var(--pal-color-base-d-d2));
+  --pal-color-d-d1: rgb(var(--pal-color-base-d-d1));
+  --pal-color-d: rgb(var(--pal-color-base-d));
+  --pal-color-d-l1: rgb(var(--pal-color-base-d-l1));
+  --pal-color-d-l2: rgb(var(--pal-color-base-d-l2));
+
+  --pal-color-black: rgb(var(--pal-color-base-black));
+  --pal-color-gs-950: rgb(var(--pal-color-base-gs-950));
+  --pal-color-gs-900: rgb(var(--pal-color-base-gs-900));
+  --pal-color-gs-850: rgb(var(--pal-color-base-gs-850));
+  --pal-color-gs-800: rgb(var(--pal-color-base-gs-800));
+  --pal-color-gs-750: rgb(var(--pal-color-base-gs-750));
+  --pal-color-gs-700: rgb(var(--pal-color-base-gs-700));
+  --pal-color-gs-650: rgb(var(--pal-color-base-gs-650));
+  --pal-color-gs-600: rgb(var(--pal-color-base-gs-600));
+  --pal-color-gs-550: rgb(var(--pal-color-base-gs-550));
+  --pal-color-gs-500: rgb(var(--pal-color-base-gs-500));
+  --pal-color-gs-450: rgb(var(--pal-color-base-gs-450));
+  --pal-color-gs-400: rgb(var(--pal-color-base-gs-400));
+  --pal-color-gs-350: rgb(var(--pal-color-base-gs-350));
+  --pal-color-gs-300: rgb(var(--pal-color-base-gs-300));
+  --pal-color-gs-250: rgb(var(--pal-color-base-gs-250));
+  --pal-color-gs-200: rgb(var(--pal-color-base-gs-200));
+  --pal-color-gs-150: rgb(var(--pal-color-base-gs-150));
+  --pal-color-gs-100: rgb(var(--pal-color-base-gs-100));
+  --pal-color-gs-50: rgb(var(--pal-color-base-gs-50));
+  --pal-color-white: rgb(var(--pal-color-base-white));
+
+  --pal-time-xs: 0.1s;
+  --pal-time-s: 0.2s;
+  --pal-time-m: 0.4s;
+  --pal-time-l: 1s;
+  --pal-time-xl: 2s;
+
+  --pal-timing-func-a: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --pal-shadow-0: 0.3px 0.5px 0.7px rgba(0, 0, 0, 0.1),
+    0.4px 0.8px 1px rgba(0, 0, 0, 0.1), 1px 2px 2.5px rgba(0, 0, 0, 0.1);
+  --pal-shadow-1: 0.3px 0.5px 0.7px rgba(0, 0, 0, 0.09),
+    0.7px 1.3px 1.7px rgba(0, 0, 0, 0.09), 1.3px 2.6px 3.3px rgba(0, 0, 0, 0.09),
+    2.6px 5.2px 6.5px rgba(0, 0, 0, 0.09), 5px 10px 12.6px rgba(0, 0, 0, 0.09);
+  --pal-shadow-2: 0.3px 0.5px 0.7px rgba(0, 0, 0, 0.08),
+    1.2px 2.4px 3px rgba(0, 0, 0, 0.08), 2.1px 4.3px 5.4px rgba(0, 0, 0, 0.08),
+    3.2px 6.5px 8.2px rgba(0, 0, 0, 0.08),
+    4.7px 9.4px 11.8px rgba(0, 0, 0, 0.08),
+    6.8px 13.6px 17.1px rgba(0, 0, 0, 0.08),
+    9.6px 19.3px 24.3px rgba(0, 0, 0, 0.08),
+    13.5px 27px 34px rgba(0, 0, 0, 0.08),
+    18.5px 37.1px 46.6px rgba(0, 0, 0, 0.08),
+    25px 50px 62.9px rgba(0, 0, 0, 0.08);
+
+  --bevel-highlight-border-width: var(--pal-size-not-font-6xs);
+
+  --pal-bevel-highlight-top: inset 0 var(--bevel-highlight-border-width) 0
+    rgba(255, 255, 255, 0.2);
+  --pal-bevel-highlight-left: inset var(--bevel-highlight-border-width) 0 0
+    rgba(255, 255, 255, 0.075);
+  --pal-bevel-highlight-right: inset
+    calc(var(--bevel-highlight-border-width) * -1) 0 0
+    rgba(255, 255, 255, 0.025);
+  --pal-bevel-highlight-bottom: inset 0
+    calc(var(--bevel-highlight-border-width) * -1) 0 rgba(255, 255, 255, 0.025);
+
+  --pal-bevel-highlight: var(--pal-bevel-highlight-top),
+    var(--pal-bevel-highlight-left), var(--pal-bevel-highlight-right),
+    var(--pal-bevel-highlight-bottom);
+}

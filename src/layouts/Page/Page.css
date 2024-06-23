@@ -1,0 +1,19 @@
+body {
+  padding: var(--pal-size-not-font-l);
+  height: 100%;
+
+  > header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    gap: var(--pal-size-not-font-m);
+    padding: var(--pal-size-not-font-m);
+  }
+
+  main {
+    margin-inline: auto;
+    max-width: 67.5rem;
+    height: 100%;
+  }
+}

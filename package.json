@@ -1,7 +1,7 @@
 {
-  "name": "st-lab__web",
+  "name": "sl-lab__web",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,8 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.10.2",
     "@astrojs/check": "^0.7.0",
+    "@fontsource-variable/inter": "^5.0.18",
+    "astro": "^4.10.2",
     "typescript": "^5.4.5"
   }
 }

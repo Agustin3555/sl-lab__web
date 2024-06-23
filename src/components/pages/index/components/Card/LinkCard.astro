@@ -1,0 +1,33 @@
+---
+import './LinkCard.css'
+import { Image } from 'astro:assets'
+import { getImgMetadata, validateImgMetadata, type Folder } from '@/helpers'
+
+export interface Props {
+  href: string
+  title: string
+  tags?: string[]
+  color: string
+}
+
+const { href, title, tags = [], color } = Astro.props
+
+const folder: Folder = 'pages'
+const file = href.slice(1) + '.webp'
+
+validateImgMetadata(folder, file)
+---
+
+<li class="link-card" style={{ backgroundColor: `var(--pal-color-${color})` }}>
+  <a href={href}>
+    <Image
+      src={getImgMetadata(folder, file)()}
+      alt={`Ilustración representativa de la página "${title}"`}
+    />
+    <span class="img"></span>
+    <header>
+      <h2>{title}</h2>
+      <ul>{tags.map(item => <li>{item}</li>)}</ul>
+    </header>
+  </a>
+</li>

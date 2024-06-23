@@ -1,0 +1,96 @@
+---
+import './Nav.css'
+import { Image } from 'astro:assets'
+import Icon from '@/components/Icon/Icon.astro'
+import {
+  getImgMetadata,
+  reassemble,
+  validateImgMetadata,
+  type Folder,
+} from '@/helpers'
+import jsonData from '@/data.json'
+
+const { pages } = jsonData
+
+const folder: Folder = 'pages'
+
+const links = reassemble(pages, (_, { page, title, color }) => {
+  validateImgMetadata(folder, `${page}.webp`)
+
+  return {
+    href: `/${page}`,
+    title,
+    color,
+    imgSrc: getImgMetadata(folder, `${page}.webp`)(),
+  }
+})
+
+const currentPage = links.find(({ href }) => href === Astro.url.pathname)
+---
+
+<nav>
+  <a href="/">
+    StoryLit Lab
+    <small>{import.meta.env.VERSION}</small>
+  </a>
+  {
+    currentPage && (
+      <>
+        <span>/</span>
+        <div id="menu" data-open="false">
+          <button>
+            <h2
+              style={`--accent-color: var(--pal-color-base-${currentPage.color})`}
+            >
+              {currentPage.title}
+            </h2>
+            <Icon faIcon="fa-solid fa-chevron-down" />
+          </button>
+          <ul>
+            {links.map(
+              ({ href, title, color, imgSrc }) =>
+                currentPage.href !== href && (
+                  <li style={`--accent-color: var(--pal-color-base-${color})`}>
+                    <a href={href}>
+                      {title}
+                      <Image
+                        src={imgSrc}
+                        alt={`Ilustración representativa de la página "${title}"`}
+                      />
+                    </a>
+                  </li>
+                )
+            )}
+          </ul>
+        </div>
+      </>
+    )
+  }
+</nav>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const menu = window.document.querySelector<HTMLElement>('#menu')
+
+    if (menu) {
+      const button = menu.querySelector('button')
+      const OPEN_DATA = 'open'
+
+      if (button) {
+        button.addEventListener('click', () => {
+          const reverse = !(menu.dataset[OPEN_DATA] === 'true')
+
+          menu.dataset[OPEN_DATA] = String(reverse)
+        })
+      }
+
+      document.addEventListener('click', event => {
+        if (
+          menu.dataset[OPEN_DATA] === 'true' &&
+          !menu.contains(event.target as Node)
+        )
+          menu.dataset[OPEN_DATA] = 'false'
+      })
+    }
+  })
+</script>

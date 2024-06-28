@@ -2,7 +2,7 @@
   --cmp-icon-size: var(--pal-size-not-font-m);
 }
 
-.icon {
+.cmp-icon {
   --fa-display: flex;
 
   align-items: center;

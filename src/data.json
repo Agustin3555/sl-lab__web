@@ -13,6 +13,11 @@
       "page": "game",
       "title": "Juego",
       "color": "a",
+      "sections": {
+        "settings": { "title": "Ajustes" },
+        "rounds": { "title": "Rondas" },
+        "summary": { "title": "Resumen" }
+      },
       "content": {}
     },
     "phraseElementBonding": {

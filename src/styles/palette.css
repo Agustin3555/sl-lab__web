@@ -1,6 +1,7 @@
 :root {
   --pal-font-a: 'Inter Variable', Arial, Helvetica, sans-serif;
 
+  --pal-size-font-2xs: 0.625rem;
   --pal-size-font-xs: 0.8125rem;
   --pal-size-font-s: 1rem;
   --pal-size-font-m: 1.25rem;

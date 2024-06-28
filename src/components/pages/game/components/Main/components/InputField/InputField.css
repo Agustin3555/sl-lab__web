@@ -1,0 +1,91 @@
+.cmp-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pal-size-not-font-xs);
+  line-height: normal;
+
+  color: rgba(var(--pal-color-base-white), 0.75);
+
+  .group {
+    --gap: var(--pal-size-not-font-2xs);
+
+    display: grid;
+    grid-template:
+      'max input' 1fr
+      'min input' 1fr /
+      auto 1fr;
+    row-gap: var(--gap);
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: calc(var(--gap) * 1.5);
+      margin-right: var(--gap);
+      padding-inline: calc(var(--gap) * 1.75);
+      width: calc(var(--pal-size-not-font-xl) + var(--pal-size-not-font-s));
+      border-radius: var(--pal-size-not-font-2xs);
+
+      font-weight: 300;
+
+      small {
+        font-size: var(--pal-size-font-2xs);
+      }
+
+      .icon {
+        --cmp-icon-size: var(--pal-size-not-font-xs);
+
+        display: flex;
+        flex-direction: column;
+
+        span {
+          height: 0.0625rem;
+          border-radius: var(--pal-size-not-font-l);
+
+          background-color: rgba(var(--pal-color-base-white), 0.625);
+        }
+      }
+    }
+
+    .min {
+      grid-area: min;
+
+      background-color: rgba(var(--pal-color-base-a), 0.375);
+    }
+
+    .max {
+      grid-area: max;
+
+      background-color: rgba(var(--pal-color-base-c), 0.375);
+    }
+
+    input {
+      grid-area: input;
+
+      padding-inline: var(--pal-size-font-xs);
+      width: 100%;
+      height: var(--pal-size-not-font-2xl);
+      border-width: 0.0625rem;
+      border-radius: var(--pal-size-not-font-2xs);
+
+      font-weight: 500;
+      color: rgba(var(--cmp-input-field-color), 1);
+      background-color: transparent;
+      border-style: solid;
+      border-color: rgba(var(--cmp-input-field-color), 0.25);
+
+      transition: color var(--pal-time-s) ease-out,
+        border-color var(--pal-time-s) ease-out;
+
+      &:focus {
+        color: rgba(var(--pal-color-base-white), 0.875);
+        border-color: rgba(var(--cmp-input-field-color), 1);
+      }
+
+      &:read-only {
+        border-style: dashed;
+        cursor: pointer;
+      }
+    }
+  }
+}

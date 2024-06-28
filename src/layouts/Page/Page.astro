@@ -9,10 +9,10 @@ import Nav from './components/Nav/Nav.astro'
 import jsonData from '@/data.json'
 
 interface Props {
-  subtitle?: string
+  title?: string
 }
 
-const { subtitle } = Astro.props
+const { title: subtitle } = Astro.props
 
 const { title } = jsonData.documentInfo
 const { base, separator } = title
@@ -42,6 +42,7 @@ if (subtitle) fullTitle += ` ${separator} ${subtitle}`
       <Nav />
     </header>
     <main>
+      <!-- TODO: Implementar una nav por secciones -->
       <slot />
     </main>
 

@@ -36,7 +36,7 @@ nav {
     position: relative;
 
     &[data-open='true'] {
-      button .icon {
+      button .cmp-icon {
         rotate: 0.5turn;
       }
 
@@ -65,7 +65,7 @@ nav {
         color: rgba(var(--accent-color), 1);
       }
 
-      .icon {
+      .cmp-icon {
         --cmp-icon-size: var(--pal-size-not-font-s);
 
         transition: rotate var(--pal-time-s) ease-out;

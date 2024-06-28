@@ -1,5 +1,5 @@
 import './Icon.css'
-import { classList } from '../../helpers/classList.helper'
+import { classList } from '@/helpers'
 
 export interface Props {
   faIcon: string
@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const Icon = ({ faIcon, handlingClass }: Props) => (
-  <i className={classList('icon', faIcon, handlingClass)} />
+  <i className={classList('cmp-icon', faIcon, handlingClass)} />
 )
 
 export default Icon

@@ -1,0 +1,25 @@
+:root {
+  --cmp-button-color: var(--pal-color-a);
+}
+
+.cmp-button {
+  --font-size: var(--pal-size-font-s);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--font-size) * 0.75);
+  padding-inline: calc(var(--font-size) * 1.5);
+  height: var(--pal-size-not-font-2xl);
+  font-size: var(--font-size);
+  border-radius: var(--pal-size-not-font-2xs);
+
+  color: var(--pal-color-white);
+  background-color: var(--cmp-button-color);
+
+  transition: box-shadow var(--pal-time-s) ease-out;
+
+  &:hover {
+    box-shadow: var(--pal-shadow-1);
+  }
+}

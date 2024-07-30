@@ -1,31 +1,22 @@
+:root {
+  --glb-line-width: 0.0625rem;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   line-height: 1;
+  scrollbar-width: thin;
 
   color: inherit;
   scroll-behavior: smooth;
-}
-
-:root {
-  --glb-line-width: var(--pal-size-not-font-6xs);
+  scrollbar-color: rgba(var(--pal-color-base-a), 0.75) transparent;
 }
 
 html {
   text-rendering: optimizeLegibility;
   background-color: var(--pal-color-gs-900);
-  min-height: 100vh;
-  height: 100vh;
-  /* TODO: pensar en como corregir esto con el body */
-}
-
-body {
-  position: relative;
-  font-size: var(--pal-size-font-xs);
-
-  font-family: var(--pal-font-a);
-  color: var(--pal-color-gs-100);
 }
 
 ::selection {
@@ -40,12 +31,9 @@ body {
   word-spacing: initial;
 }
 
-address {
-  font-style: initial;
-}
-
 ul,
 ol {
+  display: flex;
   list-style: none;
 
   li {

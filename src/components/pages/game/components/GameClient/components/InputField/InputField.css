@@ -39,7 +39,7 @@
         flex-direction: column;
 
         span {
-          height: 0.0625rem;
+          height: var(--glb-line-width);
           border-radius: var(--pal-size-not-font-l);
 
           background-color: rgba(var(--pal-color-base-white), 0.625);
@@ -65,7 +65,7 @@
       padding-inline: var(--pal-size-font-xs);
       width: 100%;
       height: var(--pal-size-not-font-2xl);
-      border-width: 0.0625rem;
+      border-width: var(--glb-line-width);
       border-radius: var(--pal-size-not-font-2xs);
 
       font-weight: 500;

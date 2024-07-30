@@ -1,4 +1,4 @@
-import './Main.css'
+import './GameClient.css'
 import {
   type ChangeEventHandler,
   type FormEventHandler,
@@ -6,70 +6,58 @@ import {
   useEffect,
 } from 'react'
 import { Button } from '@/components'
-import { InputField } from './components'
-// import {
-//   ChosenCards,
-//   PlayerCard,
-//   PlayerStatePerRound,
-//   Round,
-//   StageCard,
-//   Report,
-//   Results,
-//   ResultsProps,
-//   ReportItems,
-// } from './components'
-// import { randomInt, shuffleArray } from '../../helpers'
+import { InputField, Round } from './components'
+import { GameSimulation, type RoundData } from '../../helpers'
 
-enum PlayersSet {
+enum NumberSet {
   PLAYERS = 'players',
   ELEMENTS_CARDS_IN_HAND = 'elementsCardsInHand',
-}
 
-enum CardsSet {
   STAGE_CARDS = 'stageCards',
   DUO_STAGE_CARDS = 'duoStageCards',
+
   ELEMENT_CARDS = 'elementCards',
   TYPES_OF_ELEMENTS = 'typesOfElements',
   CARDS_BY_TYPES_OF_ELEMENTS = 'cardsByTypesOfElements',
   ELEMENT_CARDS_GIVEN_BY_A_PLAYER = 'elementCardsGivenByAPlayer',
-}
 
-enum GameSet {
   MAX_ROUNDS = 'maxRounds',
   AVERAGE_ROUNDS = 'averageRounds',
   MIN_ROUNDS = 'minRounds',
   VICTORY_POINTS = 'victoryPoints',
 }
 
-const INIT_NUMBER_INPUTS: Record<PlayersSet | CardsSet | GameSet, number> = {
-  [PlayersSet.PLAYERS]: 6,
-  [PlayersSet.ELEMENTS_CARDS_IN_HAND]: 8,
+const INIT_NUMBER_INPUTS: Record<NumberSet, number> = {
+  [NumberSet.PLAYERS]: 6,
+  [NumberSet.ELEMENTS_CARDS_IN_HAND]: 8,
 
-  [CardsSet.STAGE_CARDS]: 40,
-  [CardsSet.DUO_STAGE_CARDS]: 5,
-  [CardsSet.TYPES_OF_ELEMENTS]: 4,
-  [CardsSet.CARDS_BY_TYPES_OF_ELEMENTS]: 5,
+  [NumberSet.STAGE_CARDS]: 40,
+  [NumberSet.DUO_STAGE_CARDS]: 5,
+  [NumberSet.TYPES_OF_ELEMENTS]: 4,
+  [NumberSet.CARDS_BY_TYPES_OF_ELEMENTS]: 5,
 
-  [GameSet.VICTORY_POINTS]: 3,
+  [NumberSet.VICTORY_POINTS]: 3,
 }
 
-enum GameFinishedBy {
-  MAX_SCORE_ACHIEVED,
-  INSUFFICIENT_PLAYERS_CARDS,
-  LIMIT_OF_ROUNDS,
-}
-
-const GAME_FINISHED: Record<GameFinishedBy, string> = {
-  [GameFinishedBy.MAX_SCORE_ACHIEVED]:
-    'Un jugador consiguió los puntos de victoria',
-  [GameFinishedBy.INSUFFICIENT_PLAYERS_CARDS]:
-    'Insuficientes cartas en mazo de elementos',
-  [GameFinishedBy.LIMIT_OF_ROUNDS]: 'Se alcanzó el límite de rondas',
-}
-
-export default function App() {
+const GameClient = () => {
   const [numberInputs, setNumberInputsState] = useState(INIT_NUMBER_INPUTS)
-  // const [results, setResults] = useState<ResultsProps | undefined>(undefined)
+  const [rounds, setRounds] = useState<RoundData[] | undefined>(undefined)
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = event => {
+    event.preventDefault()
+
+    const game = new GameSimulation(
+      numberInputs[NumberSet.PLAYERS],
+      numberInputs[NumberSet.ELEMENTS_CARDS_IN_HAND],
+      numberInputs[NumberSet.STAGE_CARDS],
+      numberInputs[NumberSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER],
+      numberInputs[NumberSet.VICTORY_POINTS]
+    )
+
+    game.play()
+
+    setRounds(game.rounds)
+  }
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
     const { id, value } = event.target
@@ -79,62 +67,58 @@ export default function App() {
   useEffect(() => {
     setNumberInputsState(prev => ({
       ...prev,
-      [CardsSet.ELEMENT_CARDS]:
-        numberInputs[CardsSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER] *
-        numberInputs[PlayersSet.PLAYERS],
+      [NumberSet.ELEMENT_CARDS]:
+        numberInputs[NumberSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER] *
+        numberInputs[NumberSet.PLAYERS],
     }))
   }, [
-    numberInputs[CardsSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER],
-    numberInputs[PlayersSet.PLAYERS],
+    numberInputs[NumberSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER],
+    numberInputs[NumberSet.PLAYERS],
   ])
 
   useEffect(() => {
     setNumberInputsState(prev => ({
       ...prev,
-      [CardsSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER]:
-        numberInputs[CardsSet.TYPES_OF_ELEMENTS] *
-        numberInputs[CardsSet.CARDS_BY_TYPES_OF_ELEMENTS],
+      [NumberSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER]:
+        numberInputs[NumberSet.TYPES_OF_ELEMENTS] *
+        numberInputs[NumberSet.CARDS_BY_TYPES_OF_ELEMENTS],
     }))
   }, [
-    numberInputs[CardsSet.TYPES_OF_ELEMENTS],
-    numberInputs[CardsSet.CARDS_BY_TYPES_OF_ELEMENTS],
+    numberInputs[NumberSet.TYPES_OF_ELEMENTS],
+    numberInputs[NumberSet.CARDS_BY_TYPES_OF_ELEMENTS],
   ])
 
   useEffect(() => {
     setNumberInputsState(prev => ({
       ...prev,
-      [GameSet.MAX_ROUNDS]:
-        numberInputs[PlayersSet.PLAYERS] *
-          (numberInputs[GameSet.VICTORY_POINTS] - 1) +
+      [NumberSet.MAX_ROUNDS]:
+        numberInputs[NumberSet.PLAYERS] *
+          (numberInputs[NumberSet.VICTORY_POINTS] - 1) +
         1,
     }))
-  }, [numberInputs[PlayersSet.PLAYERS], numberInputs[GameSet.VICTORY_POINTS]])
+  }, [numberInputs[NumberSet.PLAYERS], numberInputs[NumberSet.VICTORY_POINTS]])
 
   useEffect(() => {
     setNumberInputsState(prev => ({
       ...prev,
-      [GameSet.AVERAGE_ROUNDS]: numberInputs[GameSet.MAX_ROUNDS] / 2,
+      [NumberSet.AVERAGE_ROUNDS]: numberInputs[NumberSet.MAX_ROUNDS] / 2,
     }))
-  }, [numberInputs[GameSet.MAX_ROUNDS]])
+  }, [numberInputs[NumberSet.MAX_ROUNDS]])
 
   useEffect(() => {
     setNumberInputsState(prev => ({
       ...prev,
-      [GameSet.MIN_ROUNDS]: numberInputs[GameSet.VICTORY_POINTS],
+      [NumberSet.MIN_ROUNDS]: numberInputs[NumberSet.VICTORY_POINTS],
     }))
-  }, [numberInputs[GameSet.VICTORY_POINTS]])
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = event => {
-    event.preventDefault()
-  }
+  }, [numberInputs[NumberSet.VICTORY_POINTS]])
 
   const fieldset: {
     title: string
     fields: {
-      key: PlayersSet | CardsSet | GameSet
+      key: NumberSet | NumberSet | NumberSet
       title: string
       desc?: string
-      use?: (PlayersSet | CardsSet | GameSet)[]
+      use?: (NumberSet | NumberSet | NumberSet)[]
       max?: number
       min?: number
     }[]
@@ -143,13 +127,13 @@ export default function App() {
       title: 'Jugadores',
       fields: [
         {
-          key: PlayersSet.PLAYERS,
+          key: NumberSet.PLAYERS,
           title: 'Jugadores',
           desc: 'Cantidad de jugadores',
           min: 3,
         },
         {
-          key: PlayersSet.ELEMENTS_CARDS_IN_HAND,
+          key: NumberSet.ELEMENTS_CARDS_IN_HAND,
           title: 'Cartas en mano',
           desc: 'Cantidad de cartas de elementos en mano de cada jugador',
           min: 6,
@@ -157,50 +141,55 @@ export default function App() {
       ],
     },
     {
-      title: 'Cartas',
+      title: 'Frases',
       fields: [
         {
-          key: CardsSet.STAGE_CARDS,
+          key: NumberSet.STAGE_CARDS,
           title: 'Cartas de frases',
           desc: 'Cantidad inicial de cartas del mazo de frases',
-          min: numberInputs[GameSet.MAX_ROUNDS],
+          min: numberInputs[NumberSet.MAX_ROUNDS],
         },
         {
-          key: CardsSet.DUO_STAGE_CARDS,
+          key: NumberSet.DUO_STAGE_CARDS,
           title: 'Cartas de frases doble',
           desc: 'Cantidad inicial de cartas en el mazo de frases con 2 casilleros a completar',
-          max: numberInputs[CardsSet.STAGE_CARDS],
+          max: numberInputs[NumberSet.STAGE_CARDS],
         },
+      ],
+    },
+    {
+      title: 'Elementos',
+      fields: [
         {
-          key: CardsSet.ELEMENT_CARDS,
+          key: NumberSet.ELEMENT_CARDS,
           title: 'Cartas de elementos',
           desc: 'Cantidad inicial de cartas del mazo de elementos',
-          use: [CardsSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER, PlayersSet.PLAYERS],
+          use: [NumberSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER, NumberSet.PLAYERS],
           min:
-            numberInputs[PlayersSet.ELEMENTS_CARDS_IN_HAND] *
-              numberInputs[PlayersSet.PLAYERS] +
-            (numberInputs[GameSet.MAX_ROUNDS] - 1) *
-              (numberInputs[PlayersSet.PLAYERS] - 1),
+            numberInputs[NumberSet.ELEMENTS_CARDS_IN_HAND] *
+              numberInputs[NumberSet.PLAYERS] +
+            (numberInputs[NumberSet.MAX_ROUNDS] - 1) *
+              (numberInputs[NumberSet.PLAYERS] - 1),
         },
         {
-          key: CardsSet.TYPES_OF_ELEMENTS,
+          key: NumberSet.TYPES_OF_ELEMENTS,
           title: 'Tipos de elementos',
           desc: 'Cantidad de tipos de elementos',
           min: 4,
         },
         {
-          key: CardsSet.CARDS_BY_TYPES_OF_ELEMENTS,
+          key: NumberSet.CARDS_BY_TYPES_OF_ELEMENTS,
           title: 'Cartas por tipo de elemento',
           desc: 'Cantidad de cartas por tipo de elemento',
           min: 5,
         },
         {
-          key: CardsSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER,
+          key: NumberSet.ELEMENT_CARDS_GIVEN_BY_A_PLAYER,
           title: 'Cartas de elementos que da 1 jugador',
           desc: 'Cartas de elementos que da 1 jugador...',
           use: [
-            CardsSet.TYPES_OF_ELEMENTS,
-            CardsSet.CARDS_BY_TYPES_OF_ELEMENTS,
+            NumberSet.TYPES_OF_ELEMENTS,
+            NumberSet.CARDS_BY_TYPES_OF_ELEMENTS,
           ],
         },
       ],
@@ -209,28 +198,28 @@ export default function App() {
       title: 'Juego',
       fields: [
         {
-          key: GameSet.VICTORY_POINTS,
+          key: NumberSet.VICTORY_POINTS,
           title: 'Puntos de victoria',
           desc: 'Cantidad de puntos que un jugador debe conseguir para ganar',
         },
         {
-          key: GameSet.MAX_ROUNDS,
+          key: NumberSet.MAX_ROUNDS,
           title: 'Rondas máximas',
           desc: 'Cantidad de rondas...',
-          use: [PlayersSet.PLAYERS, GameSet.VICTORY_POINTS],
+          use: [NumberSet.PLAYERS, NumberSet.VICTORY_POINTS],
         },
         {
-          key: GameSet.AVERAGE_ROUNDS,
+          key: NumberSet.AVERAGE_ROUNDS,
           title: 'Media de rondas',
           desc: 'Media de rondas...',
-          use: [GameSet.MAX_ROUNDS],
+          use: [NumberSet.MAX_ROUNDS],
           max: 10,
         },
         {
-          key: GameSet.MIN_ROUNDS,
+          key: NumberSet.MIN_ROUNDS,
           title: 'Rondas mínimas',
           desc: 'Cantidad de rondas...',
-          use: [GameSet.VICTORY_POINTS],
+          use: [NumberSet.VICTORY_POINTS],
           min: 2,
         },
       ],
@@ -238,7 +227,7 @@ export default function App() {
   ]
 
   return (
-    <>
+    <div className="cmp-game-client">
       <form onSubmit={handleSubmit}>
         <div className="params">
           {fieldset.map(({ title, fields }) => (
@@ -263,8 +252,18 @@ export default function App() {
         </div>
         <Button text="Simular" faIcon="fa-solid fa-dice" />
       </form>
-      {/* {results && results.a.map(item => <Round {...item} />)}
-      {results && <Summary {...results.b} />} */}
-    </>
+      {rounds && (
+        <article className="rounds">
+          <ul>
+            {rounds.map((item, index) => (
+              <Round key={index} number={index + 1} {...item} />
+            ))}
+          </ul>
+        </article>
+      )}
+      {/* {results && <Summary {...results.b} />} */}
+    </div>
   )
 }
+
+export default GameClient

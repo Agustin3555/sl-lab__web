@@ -1,6 +1,9 @@
 body {
-  padding: var(--pal-size-not-font-l);
-  height: 100%;
+  position: relative;
+
+  font-family: var(--pal-font-a);
+  font-size: var(--pal-size-font-xs);
+  color: var(--pal-color-gs-100);
 
   > header {
     position: fixed;
@@ -11,9 +14,12 @@ body {
     padding: var(--pal-size-not-font-m);
   }
 
-  main {
-    margin-inline: auto;
-    max-width: 67.5rem;
+  > main {
+    align-content: center;
+    padding: var(--pal-size-not-font-l);
     height: 100%;
+    min-height: 100vh;
+    max-width: calc(67.5rem + var(--pal-size-not-font-l) * 2);
+    margin-inline: auto;
   }
 }

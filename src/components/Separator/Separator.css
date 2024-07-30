@@ -1,0 +1,17 @@
+:root {
+  --cmp-separator-width: var(--glb-line-width);
+  --cmp-separator-long: 100%;
+}
+
+.cmp-separator {
+  width: var(--cmp-separator-long);
+  height: var(--cmp-separator-width);
+  border-radius: var(--pal-size-not-font-l);
+
+  background-color: var(--cmp-separator-color);
+}
+
+.cmp-separator--inverted {
+  width: var(--cmp-separator-width);
+  height: var(--cmp-separator-long);
+}

@@ -1,11 +1,6 @@
-.home {
-  align-content: center;
-  height: 100%;
-
-  > ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--pal-size-not-font-l);
-    width: 100%;
-  }
+.home > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pal-size-not-font-l);
+  width: 100%;
 }

@@ -1,0 +1,145 @@
+.cmp-round {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pal-size-not-font-xl);
+
+  header {
+    --cmp-separator-color: var(--pal-color-gs-750);
+
+    display: flex;
+    align-items: center;
+    gap: var(--pal-size-not-font-m);
+
+    h3 {
+      font-size: var(--pal-size-font-s);
+
+      text-wrap: nowrap;
+      font-weight: initial;
+      color: var(--pal-color-a);
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--pal-size-not-font-xl) * 2);
+
+    color: rgba(var(--pal-color-base-white), 0.875);
+
+    .deck {
+      flex-wrap: wrap;
+      gap: var(--pal-size-not-font-2xs);
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--pal-size-not-font-xs);
+      aspect-ratio: 7 / 10;
+      width: var(--pal-size-not-font-2xl);
+      border-radius: var(--pal-size-not-font-2xs);
+
+      font-weight: 700;
+      background-color: var(--pal-color-gs-750);
+      box-shadow: var(--pal-shadow-0);
+
+      small {
+        font-size: var(--pal-size-font-2xs);
+
+        font-weight: initial;
+      }
+    }
+
+    .card--stage {
+      background-color: rgba(var(--pal-color-base-b), 0.75);
+    }
+
+    .card--chosen-by-player {
+      background-color: rgba(var(--pal-color-base-c), 0.75);
+    }
+
+    .card--chosen-by-judge {
+      background-color: rgba(var(--pal-color-base-a), 0.75);
+    }
+
+    .chosen-cards {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--pal-size-not-font-xl);
+
+      .deck > li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--pal-size-not-font-s);
+
+        footer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          aspect-ratio: 1;
+          width: var(--pal-size-not-font-l);
+          font-size: var(--pal-size-font-2xs);
+          border-radius: var(--pal-size-not-font-l);
+
+          color: var(--pal-color-black);
+          background-color: var(--pal-color-gs-400);
+        }
+      }
+    }
+
+    .players-status {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--pal-size-not-font-l);
+
+      > li {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--pal-size-not-font-xs);
+
+        .player-info {
+          display: flex;
+          justify-content: space-between;
+          gap: var(--pal-size-not-font-xs);
+          padding: var(--pal-size-not-font-xs);
+          width: 7rem;
+          border-radius: var(--pal-size-not-font-2xs);
+
+          background-color: var(--pal-color-gs-400);
+
+          > li {
+            align-items: center;
+            gap: var(--pal-size-not-font-xs);
+
+            color: var(--pal-color-black);
+
+            .cmp-icon {
+              --cmp-icon-size: var(--pal-size-not-font-s);
+
+              color: rgba(var(--pal-color-base-black), 0.5);
+            }
+          }
+        }
+
+        .player-info--winner {
+          font-weight: 700;
+          background-color: rgba(var(--pal-color-base-a), 0.75);
+
+          > li {
+            color: var(--pal-color-white);
+
+            .cmp-icon {
+              color: rgba(var(--pal-color-base-white), 0.625);
+            }
+          }
+        }
+      }
+    }
+  }
+}

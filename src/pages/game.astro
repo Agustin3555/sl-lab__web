@@ -1,11 +1,11 @@
 ---
 import Page from '@/layouts/Page/Page.astro'
-import Main from '@/components/pages/game/components/Main/Main'
+import GameClient from '@/components/pages/game/components/GameClient/GameClient'
 import jsonData from '@/data.json'
 
 const { title } = jsonData.pages.game
 ---
 
 <Page title={title}>
-  <Main client:load />
+  <GameClient client:load />
 </Page>
